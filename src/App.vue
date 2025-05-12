@@ -1,10 +1,9 @@
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
 import { attestationPdf } from "./data/pdf/BaseModel";
+import Attestation from "./components/Attestation.vue";
 import { ref } from "vue";
 const dataValue = {
- 
-
   nomAdAssure: "mba ndong",
   NomAdSoCiete: "NSIA ",
   NumChassis: "2020",
@@ -17,7 +16,6 @@ const dataValue = {
   assureur: "NSIA",
   marquetype: "toyota bus",
   immatriculation: 100000522,
-
 };
 </script>
 
@@ -34,6 +32,7 @@ const dataValue = {
   <button @click.prevent="attestationPdf(dataValue)">
     <span>Clique ici</span>
   </button>
+  <Attestation />
 </template>
 
 <style scoped>
