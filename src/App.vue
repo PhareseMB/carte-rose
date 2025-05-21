@@ -2,6 +2,7 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import { attestationPdf } from "./data/pdf/BaseModel";
 import Attestation from "./components/Attestation.vue";
+import AttestationViews from "./views/AttestationViews.vue";
 import { ref } from "vue";
 const dataValue = {
   nomAdAssure: "mba ndong",
@@ -29,10 +30,12 @@ const dataValue = {
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" /> -->
-  <button @click.prevent="attestationPdf(dataValue)">
+  <!-- <button @click.prevent="attestationPdf(dataValue)">
     <span>Clique ici</span>
-  </button>
-  <Attestation />
+  </button> -->
+  <!-- <Attestation /> -->
+  <!-- <AttestationViews /> -->
+  <router-view />
 </template>
 
 <style scoped>
