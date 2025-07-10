@@ -11,45 +11,6 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 export default {
   methods: {
     generatePDF() {
-      // const docDefinition = {
-      //   pageSize: "A3",
-      //   pageOrientation: "landscape",
-      //   content: [
-      //     {
-      //       canvas: [
-      //     {
-      //       type: 'rect',
-      //       x: 50,
-      //       y: 30,
-      //       w: 800,
-      //       h: 150,
-      //       lineWidth: 2,
-      //       lineColor: 'black'
-      //     }
-      //       ]
-      //     },
-      //     { text: 'MOUSSOUNDA MARIE GABRIELLE', bold: true, absolutePosition: { x: 400, y: 50 } },
-      //     { text: 'BP POG', absolutePosition: { x: 400, y: 70 } },
-      //     { text: 'FT852AA', absolutePosition: { x: 700, y: 50 } },
-      //     { text: '02/20/2024', absolutePosition: { x: 700, y: 70 } },
-      //     { text: '01/20/2025', absolutePosition: { x: 800, y: 70 } },
-      //     { text: 'GB40002012302469', absolutePosition: { x: 700, y: 90 } },
-      //     { text: 'AGENTS MANDATAIRES', bold: true, absolutePosition: { x: 200, y: 50 } },
-      //     { text: 'GB40002012302469', absolutePosition: { x: 200, y: 70 } },
-      //     { text: 'OUI', absolutePosition: { x: 200, y: 200 } },
-      //     { text: 'OUI', absolutePosition: { x: 200, y: 200 } },
-      //     { text: 'NON', absolutePosition: { x: 300, y: 200 } },
-      //     { text: 'NON', absolutePosition: { x: 200, y: 120 } },
-      //     { text: 'NON', absolutePosition: { x: 200, y: 120 } },
-      //     { text: 'NON', absolutePosition: { x: 300, y: 120 } },
-      //     { text: '02/20/2024', absolutePosition: { x: 200, y: 140 } },
-      //     { text: '01/20/2025', absolutePosition: { x: 200, y: 140 } },
-      //     { text: 'B', absolutePosition: { x: 400, y: 140 } },
-      //     { text: 'LJ 90 CLL', absolutePosition: { x: 450, y: 140 } },
-      //     { text: 'TOYOTA', absolutePosition: { x: 550, y: 140 } },
-      //     { text: 'FT852AA', absolutePosition: { x: 700, y: 140 } },
-      // ]
-      // };
       const docDefinition = {
         pageSize: "A3", // Taille de la page A3
         pageMargins: [100, 265, 40, 40], // Marges: gauche, haut, droite, bas

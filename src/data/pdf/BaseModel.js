@@ -3,273 +3,55 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-/**
- *
- * @param {Object} e
- */
-export const attestationPdf = async (e) => {
+export const carterosePdf = async (e) => {
   const docDefinition = {
     pageSize: "A4",
     pageOrientation: "landscape",
-    pageMargins: [90, 150, 20, 50],
+    pageMargins: [0, 0, 0, 0],
+    defaultStyle: {
+      fontSize: 8,
+    },
     content: [
-      {
-        columns: [
+      // Bloc 1
+      { text: e.nom_client, absolutePosition: { x: 91, y: 217 } },
+      { text: e.plaque, absolutePosition: { x: 138, y: 240 } },
+      { text: e.marque, absolutePosition: { x: 135, y: 250 } },
+      { text: "NSIA assurances", absolutePosition: { x: 128, y: 265 } },
+      { text: e.bureau.label, absolutePosition: { x: 91, y: 316 } },
+      { text: e.numero_police, absolutePosition: { x: 110, y: 327 } },
+      { text: e.date_debut, absolutePosition: { x: 65, y: 351 } },
+      { text: e.date_fin, absolutePosition: { x: 125, y: 349 } },
+      { text: e.categorie.name, absolutePosition: { x: 88, y: 376 } },
 
-          {
-            // auto-sized columns have their widths based on their content
-            width: 'auto',
-            
-            stack: [
-              {
-                    text: e["nomAdAssure"],
-                    absolutePosition: { x: 118, y: 224 },
-                  },
+      // Bloc 2
+      { text: e.nom_client, absolutePosition: { x: 274, y: 217 } },
+      { text: e.plaque, absolutePosition: { x: 313, y: 240 } },
+      { text: e.marque, absolutePosition: { x: 308, y: 250 } },
+      { text: "NSIA assurances", absolutePosition: { x: 301, y: 265 } },
+      { text: e.bureau.label, absolutePosition: { x: 274, y: 316 } },
+      { text: e.numero_police, absolutePosition: { x: 289, y: 325 } },
+      { text: e.date_debut, absolutePosition: { x: 240, y: 351 } },
+      { text: e.date_fin, absolutePosition: { x: 319, y: 349 } },
+      { text: e.categorie.name, absolutePosition: { x: 260, y: 376 } },
 
-                  {
-                    text: e["immatriculation"],
-                    absolutePosition: { x: 158, y: 246 },
-                  },
+      // Bloc 3
+      { text: e.nom_client, absolutePosition: { x: 451, y: 238 } },
+      { text: e.addresse, absolutePosition: { x: 456, y: 269 } },
+      { text: e.plaque, absolutePosition: { x: 481, y: 277 } },
+      { text: "NSIA Assurances", absolutePosition: { x: 438, y: 302 } },
+      { text: "", absolutePosition: { x: 433, y: 310 } },
+      { text: e.categorie.name, absolutePosition: { x: 441, y: 376 } },
 
-                  {
-                    text: e["marquetype"],
-                    absolutePosition: { x: 158, y: 259 },
-                  },
-
-                  {
-                    text: e["assureur"],
-                    absolutePosition: { x: 146, y: 272 },
-                  },
-                  {
-                    text: e["BureauEmetteur"],
-                    absolutePosition: { x: 163, y: 302 },
-                  },
-                  {
-                    text: e["police"],
-                    absolutePosition: { x: 141, y: 325 },
-                  },
-                  {
-                    text: e["dateDebut"],
-                    absolutePosition: { x: 122, y: 349 },
-                  },
-                  {
-                    text: e["dateFin"],
-                    absolutePosition: { x: 191, y: 349 },
-                  },
-
-                  {
-                    text: e["usagecat"],
-                    absolutePosition: { x: 107, y: 375 },
-                  },
-            ]
-
-           
-          
-
-          }, 
-          
-          {
-            // auto-sized columns have their widths based on their content
-            width: 'auto',
-            
-            stack: [
-              {
-                    text: e["nomAdAssure"],
-                    absolutePosition: { x: 294, y: 226 },
-                  },
-
-                  {
-                    text: e["immatriculation"],
-                    absolutePosition: { x: 327, y: 247 },
-                  },
-
-                  {
-                    text: e["marquetype"],
-                    absolutePosition: { x: 322, y: 259 },
-                  },
-
-                  {
-                    text: e["assureur"],
-                    absolutePosition: { x: 315, y: 272 },
-                  },
-                  {
-                    text: e["BureauEmetteur"],
-                    absolutePosition: { x: 315, y: 303 },
-                  },
-                  {
-                    text: e["police"],
-                    absolutePosition: { x: 315, y: 329 },
-                  },
-                  {
-                    text: e["dateDebut"],
-                    absolutePosition: { x: 122, y: 349 },
-                  },
-                  {
-                    text: e["dateFin"],
-                    absolutePosition: { x: 285, y: 352 },
-                  },
-
-                  {
-                    text: e["usagecat"],
-                    absolutePosition: { x: 254, y: 376 },
-                  },
-            ]
-
-           
-          
-
-          }, 
-          
-          {
-            // auto-sized columns have their widths based on their content
-            width: 'auto',
-            
-            stack: [
-              {
-                    text: e["nomAdAssure"],
-                    absolutePosition: { x: 466, y: 252 },
-                  },
-
-                  {
-                    text: e["immatriculation"],
-                    absolutePosition: { x: 465, y: 273 },
-                  },
-
-                  {
-                    text: e["NomAdSoCiete"],
-                    absolutePosition: { x: 461, y: 287 },
-                  },
-
-                  {
-                    text: e["NomAdSoCiete"],
-                    absolutePosition: { x: 454, y: 311 },
-                  },
-                  {
-                    text: e["usagecat"],
-                    absolutePosition: { x: 458, y: 378 },
-                  },
-
-                  
-                  
-            ]
-
-          },
-
-          {
-            // auto-sized columns have their widths based on their content
-            width: 'auto',
-            
-            stack: [
-              {
-                    text: e["dateDebut"],
-                    absolutePosition: { x: 612, y: 236 },
-                  },
-
-                  {
-                    text: e["dateFin"],
-                    absolutePosition: { x: 695, y: 234 },
-                  },
-
-                  {
-                    text: e["police"],
-                    absolutePosition: { x: 683, y: 246 },
-                  },
-
-                  {
-                    text: e["dateDebut"],
-                    absolutePosition: { x: 647, y: 258 },
-                
-                  },
-                  {
-                    text: e["dateFin"],
-                    absolutePosition: { x: 718, y: 258 },
-                  },
-
-                  {
-                    text: e["marquetype"],
-                    absolutePosition: { x:627 , y: 281 },
-                  },
-
-                  {
-                    text: e["NumChassis"],
-                    absolutePosition: { x: 636, y: 307 },
-                  },
-
-
-                  {
-                    text: e["BureauEmetteur"],
-                    absolutePosition: { x: 632, y: 328 },
-                  },
-
-                  
-                  
-            ]
-
-          },
-          
-        ],
-        // optional space between columns
-        columnGap: 10
-      },
-     //{ 
-        // stack: [
-        //   {
-        //     text: e["omAdAssure"],
-        //     absolutePosition: { x: 996.01, y: 144 },
-        //   },
-        //   {
-        //     text: e["immatriculation"],
-        //     absolutePosition: { x:1093.31, y: 423.7 }, 
-        //   },
-        //   {
-        //     text: e["marquetype"],
-        // absolutePosition: { x: 1142.46, y: 406.88 }, 
-        //   },
-        //   {
-        //     text: e["assureur"],
-        // absolutePosition: { x: 1195.63, y: 311.19 }, 
-        //   },
-        //   {
-        //     text: e["BureauEmetteur"],
-        // absolutePosition: { x: 1344, y: 429 }, 
-        //   },
-        //   {
-        //     text: e["police"],
-        // absolutePosition: { x: 311.19, y: 1442.39 }, 
-        //   },
-        //   {
-        //     text: e["dateDebut"],
-        // absolutePosition: { x: 189.21, y: 1542.69 }, 
-        //   },
-        //   {
-        //     text: e["dateFin"],
-        // absolutePosition: { x: 500.54, y: 1538.68 }, 
-        //   },
-        //   {
-        //     text: e["usagecat"],
-        //     absolutePosition: { x: 148.21, y: 1642 },
-        //   },
-        
-        // ],
-      //   columns: [
-        
-      //     {
-      //       stack: [
-
-      //         {
-      //               text: e["omAdAssure"],
-      //                absolutePosition: { x: 996.01, y: 144 },
-      //             },
-      //       ]
-      //      },
-     
-      //   ]
-      // },
-     /////////////////////////////////////////////////////////////
-      
+      // Bloc 4
+      { text: e.date_debut, absolutePosition: { x: 608, y: 214 } },
+      { text: e.date_fin, absolutePosition: { x: 688, y: 214 } },
+      { text: e.numero_police, absolutePosition: { x: 679, y: 230 } },
+      { text: e.date_debut, absolutePosition: { x: 648, y: 239 } },
+      { text: e.date_fin, absolutePosition: { x: 715, y: 239 } },
+      { text: e.marque, absolutePosition: { x: 612, y: 263 } },
+      { text: "", absolutePosition: { x: 631, y: 290 } },
+      { text: e.bureau.label, absolutePosition: { x: 621, y: 316 } },
     ],
-
-
     styles: {
       anotherStyle: {
         alignment: "left",
@@ -285,6 +67,221 @@ export const attestationPdf = async (e) => {
       },
     },
   };
+
+  pdfMake.createPdf(docDefinition).open();
+};
+
+/**
+ *
+ * @param {Object} data
+ */
+export const generatePDF = (data) => {
+  console.log("generatorPdf", data.garanties[0].label);
+  const { garanties } = data;
+  let newDataLabel = [];
+  let newData = [];
+  garanties.forEach((e) => {
+    newDataLabel.push(e.label);
+  });
+
+  const caches = [
+    { id: 1, label: "R.C", disabled: true, value: true },
+    { id: 2, label: "D.R", disabled: true, value: true },
+    {
+      id: 3,
+      label: newDataLabel.filter((e) => e === "Vol").length >= 1 ? "Vol" : "",
+      disabled: false,
+      value: false,
+    },
+    {
+      id: 4,
+      label:
+        newDataLabel.filter((e) => e === "Incendie").length >= 1
+          ? "Incendie"
+          : "",
+      disabled: false,
+      value: false,
+    },
+    {
+      id: 5,
+      label: newDataLabel.filter((e) => e === "DOM").length >= 1 ? "DOM" : "",
+      disabled: false,
+      value: false,
+    },
+    {
+      id: 6,
+      label: newDataLabel.filter((e) => e === "B.G").length >= 1 ? "B.G" : "",
+      disabled: false,
+      value: false,
+    },
+  ];
+
+  newDataLabel.forEach((e) => {
+    Object.entries(caches).forEach((key, valeur) => {
+      if (e == key[1].label) {
+        newData.push({
+          id: key[1].id,
+          label: key[1].label,
+          disabled: true,
+          value: true,
+        });
+      } else {
+        newData.push({
+          id: key[1].id,
+          label: "",
+          disabled: true,
+          value: true,
+        });
+      }
+    });
+  });
+
+  // Object.entries(caches).forEach((key, valeur) => {
+  // console.log(key[1]);
+  // newDataLabel.forEach((e) => {
+  //   if (e == key[1].label) {
+  //     newData.push({
+  //       id: key[1].id,
+  //       label: key[1].label,
+  //       disabled: true,
+  //       value: true,
+  //     });
+  //   } else {
+  //     newData.push({
+  //       id: key[1].id,
+  //       label: "",
+  //       disabled: true,
+  //       value: true,
+  //     });
+  //   }
+  // });
+  // });
+  // console.log(newData);
+
+  data.garanties = caches;
+  const docDefinition = {
+    pageSize: "A3",
+    pageMargins: [100, 265, 40, 40],
+    pageOrientation: "landscape",
+    content: [
+      {
+        columns: [
+          {
+            width: "33%",
+            stack: [
+              {
+                text: data.bureau.label,
+                bold: true,
+                alignment: "center",
+                margin: [160, 60, 0, 20],
+              },
+              {
+                text: data.numero_police,
+                alignment: "left",
+                margin: [30, 0, 0, 20],
+                fontSize: 14,
+              },
+              {
+                columns: [
+                  { text: "Oui", alignment: "center" },
+                  { text: "Oui", alignment: "center" },
+                  {
+                    text: data.garanties[2].label === "Vol" ? "Oui" : "Non",
+                    alignment: "center",
+                  },
+                ],
+                columnGap: 45,
+                margin: [30, 5, 0, 20],
+                fontSize: 14,
+              },
+              {
+                columns: [
+                  {
+                    text:
+                      data.garanties[3].label === "Incendie" ? "Oui" : "Non",
+                    alignment: "center",
+                  },
+                  {
+                    text: data.garanties[4].label === "DOM" ? "Oui" : "Non",
+                    alignment: "center",
+                  },
+                  {
+                    text: data.garanties[5].label === "B.G" ? "Oui" : "Non",
+                    alignment: "center",
+                  },
+                ],
+                columnGap: 45,
+                margin: [30, 10, 0, 20],
+                fontSize: 14,
+              },
+              {
+                columns: [
+                  { text: data.date_debut, alignment: "left" },
+                  { text: data.date_debut, alignment: "left" },
+                ],
+                columnGap: 35,
+                margin: [30, 5, 0, 0],
+              },
+            ],
+          },
+          {
+            width: "34%",
+            stack: [
+              {
+                text: data.nom_client,
+                bold: true,
+                alignment: "center",
+                margin: [0, 15, 10, 20],
+                fontSize: 16,
+              },
+              {
+                text: data.adresse,
+                alignment: "center",
+                margin: [0, 8, 135, 20],
+              },
+              {
+                columns: [
+                  { text: data.type, alignment: "center" },
+                  { text: data.genre_vehicule, alignment: "center" },
+                  { text: data.marque, alignment: "center" },
+                  { text: data.plaque, alignment: "center", fontSize: 16 },
+                ],
+                columnGap: 70,
+                margin: [60, 120, 70, 0],
+              },
+            ],
+          },
+          // Troisième colonne
+          {
+            width: "33%",
+            stack: [
+              {
+                text: data.plaque,
+                alignment: "left",
+                margin: [210, 50, 0, 0],
+                fontSize: 16,
+              },
+              {
+                columns: [
+                  { text: data.date_debut, alignment: "left" },
+                  { text: data.date_fin, alignment: "left" },
+                ],
+                columnGap: 35,
+                margin: [220, 35, 0, 20],
+              },
+              {
+                text: data.numero_police,
+                alignment: "left",
+                margin: [215, 5, 0, 0],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+
+  console.log("doc", docDefinition.content);
 
   pdfMake.createPdf(docDefinition).open();
 };

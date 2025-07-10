@@ -1,6 +1,6 @@
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
-import { attestationPdf } from "./data/pdf/BaseModel";
+// import { attestationPdf } from "./data/pdf/BaseModel";
 import Attestation from "./components/Attestation.vue";
 import AttestationViews from "./views/AttestationViews.vue";
 import { ref } from "vue";

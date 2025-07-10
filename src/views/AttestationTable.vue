@@ -1,61 +1,152 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-gray-100">
-    <div class="container mx-auto p-6 flex-grow">
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden h-full">
-        <div class="p-4">
-          <router-link
-            :to="{ name: 'Home' }"
-            class="inline-block mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Créer
-          </router-link>
+  <div class="min-h-screen bg-gray-50/50">
+    <div class="container mx-auto px-4 py-8">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100">
+        <div class="p-6 border-b border-gray-100">
+          <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-semibold text-gray-800">
+              Liste de production #{{ attestionStore.attestation.length }}
+            </h2>
+            <router-link
+              :to="{ name: 'Home' }"
+              class="inline-flex items-center px-4 py-2 bg-yellow-500 text-blue-500 rounded-lg shadow-sm hover:shadow-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              Créer nouvelle
+            </router-link>
+          </div>
         </div>
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Nom
-              </th>
-              <th
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Prénom
-              </th>
-              <th
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Date
-              </th>
-              <th
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">Doe</td>
-              <td class="px-6 py-4 whitespace-nowrap">John</td>
-              <td class="px-6 py-4 whitespace-nowrap">01/01/2024</td>
-              <td class="px-6 py-4 whitespace-nowrap space-x-2">
-                <button
-                  class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300"
+
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="bg-gray-50">
+                <th
+                  class="px-6 py-4 text-left text-sm font-medium text-gray-600"
                 >
-                  <i class="fas fa-print mr-2"></i>Imprimer
-                </button>
-                <button
-                  class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition duration-300"
+                  #
+                </th>
+                <th
+                  class="px-6 py-4 text-left text-sm font-medium text-gray-600"
                 >
-                  <i class="fas fa-eye mr-2"></i>Voir
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                  Nom
+                </th>
+                <th
+                  class="px-6 py-4 text-left text-sm font-medium text-gray-600"
+                >
+                  N° Police
+                </th>
+                <th
+                  class="px-6 py-4 text-left text-sm font-medium text-gray-600"
+                >
+                  Date
+                </th>
+                <th
+                  class="px-6 py-4 text-left text-sm font-medium text-gray-600"
+                >
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="hover:bg-gray-50/50 transition-colors duration-200"
+                v-for="(data, index) in attestionStore.attestation"
+                :key="data.id"
+                :class="{
+                  'line-through text-gray-400':
+                    attestionStore.show && attestionStore.show2,
+                }"
+              >
+                <td class="px-6 py-4 text-sm text-gray-800">
+                  {{ index + 1 }}
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-800">
+                  {{ data.nom_client }}
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-800">
+                  {{ data.numero_police }}
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-800">
+                  {{ data.date_debut }}
+                </td>
+                <td class="px-6 py-4">
+                  <div class="flex space-x-3">
+                    <button
+                      class="inline-flex items-center px-3 py-2 bg-blue-50 text-yellow-800 rounded-lg hover:bg-blue-100 transition-all duration-200"
+                      @click.prevent="
+                        attestionStore.impression(2, data);
+                        attestionStore.show = true;
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+                        />
+                      </svg>
+                      Imprimer carte rose
+                    </button>
+                    <button
+                      class="inline-flex items-center px-3 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-all duration-200"
+                      @click.prevent="
+                        attestionStore.impression(1, data);
+                        attestionStore.show2 = true;
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+                        />
+                      </svg>
+                      Imprimer attestation
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { onMounted } from "vue";
+import { useAttestationStore } from "../store/attestation";
+
+const attestionStore = useAttestationStore();
+
+onMounted(async () => {
+  await attestionStore.getAttestion();
+});
+</script>
