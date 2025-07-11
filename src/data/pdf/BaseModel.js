@@ -84,7 +84,6 @@ export const carterosePdf = async (e) => {
  * @param {Object} data
  */
 export const generatePDF = (data) => {
-  console.log("generatorPdf", data.garanties[0].label);
   const { garanties } = data;
   let newDataLabel = [];
   let newData = [];
@@ -225,7 +224,7 @@ export const generatePDF = (data) => {
               {
                 columns: [
                   { text: data.date_debut, alignment: "left" },
-                  { text: data.date_debut, alignment: "left" },
+                  { text: data.date_fin, alignment: "left" },
                 ],
                 columnGap: 35,
                 margin: [30, 5, 0, 0],
@@ -249,13 +248,13 @@ export const generatePDF = (data) => {
               },
               {
                 columns: [
-                  { text: data.type, alignment: "center" },
                   { text: data.genre_vehicule, alignment: "center" },
+                  { text: data.type, alignment: "center" },
                   { text: data.marque, alignment: "center" },
-                  { text: data.plaque, alignment: "center", fontSize: 16 },
+                  { text: data.plaque, alignment: "center", fontSize: 14 },
                 ],
                 columnGap: 70,
-                margin: [60, 120, 70, 0],
+                margin: [40, 120, 70, 0],
               },
             ],
           },

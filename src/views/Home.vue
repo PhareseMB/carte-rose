@@ -154,6 +154,12 @@ const fields = [
   },
   { label: "Type", name: "type", type: "text", placeholder: "Type" },
   { label: "Marque", name: "marque", type: "text", placeholder: "Marque" },
+  {
+    label: "Prime TTC",
+    name: "primeTTC",
+    type: "number",
+    placeholder: "Prime TTC",
+  },
 ];
 
 // Garanties disponibles
@@ -176,20 +182,31 @@ const bureaux = [
   { id: 7, label: "BUREAU DIRECT AKANDA", code: 2008 },
   { id: 8, label: "BUREAU DIRECT MAKOUKOU", code: 2009 },
   { id: 9, label: "BUREAU DIRECT OYEM", code: 2010 },
-  { id: 10, label: " SAG", code: 3004 },
+  { id: 10, label: "SAG", code: 3004 },
   { id: 11, label: "ROYAL ASSURANCES", code: 3011 },
-  { id: 12, label: "AGENT MANDATAIRES", code: 3011 },
+  { id: 12, label: "AGENT MANDATAIRES", code: 4000 },
+  { id: 13, label: "BUREAU DIRECT LOUIS", code: 2011 },
+  { id: 13, label: "ECOBANK", code: 5001 },
+  { id: 13, label: "BICIG", code: 5004 },
+  { id: 13, label: "EDG", code: 5007 },
+  { id: 13, label: "UBA", code: 5009 },
 ];
 
 const categories = [
   { id: 1, name: "PROMENADE & AFFAIRES", code: 201 },
-  { id: 4, name: "TAXI", code: 204 },
+  { id: 4, name: "TRANSPORT EN COMMUN", code: 204 },
   { id: 2, name: "TRANSPORT PUBLIC DE MARCHANDISES", code: 203 },
-  { id: 3, name: "TRANSPORT PRIVE DE MARCHANDES", code: 202 },
+  { id: 3, name: "TRANSPORT POUR PROPRE COMPTE", code: 202 },
   { id: 5, name: "ENGIN MOBILE DE CHANTIER", code: 209 },
   { id: 6, name: "MOTO DEUX OU TROIS ROUES", code: 205 },
+  { id: 7, name: "W GARAGISTE", code: 206 },
+  { id: 8, name: "VEHICULE DE LOCATION", code: 208 },
+  { id: 9, name: "TRANSPORT EN COMMUN", code: 204 },
+  { id: 10, name: "ENGINS DE CHANTIER", code: 209 },
+  { id: 11, name: "VEHICULE CONFIER AUX GARAGISTRES", code: 206 },
+  { id: 12, name: "VEHICULE SPECIAUX", code: 210 },
   {
-    id: 7,
+    id: 13,
     name: "TRACTEURS AGRICOLES ET FORESTIERS AVEC OU SANS CHENILLES",
     code: 212,
   },
@@ -264,6 +281,11 @@ const validateData = (data) => {
   }
   if (!data.plaque) {
     alert("Veuillez entrer la plaque du véhicule.");
+    return false;
+  }
+
+  if (!data.primeTTC) {
+    alert("Veuillez entrer la prime TTC.");
     return false;
   }
 

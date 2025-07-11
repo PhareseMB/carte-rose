@@ -39,7 +39,7 @@ export const useAttestationStore = defineStore("attestationStore", {
         const numero_police =
           data.type_attestation === "1"
             ? `GB${data.bureau.code}${data.categorie.code}${year}${nextNumeroPolice}`
-            : undefined;
+            : data.numero_police;
 
         const formatDate = (dateStr) => {
           const date = new Date(dateStr);
