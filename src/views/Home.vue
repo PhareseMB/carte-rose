@@ -141,6 +141,12 @@ const fields = [
     placeholder: "Date de fin",
   },
   {
+    label: "Numéro de Police",
+    name: "numero_police",
+    type: "text",
+    placeholder: "Numero de police",
+  },
+  {
     label: "Genre",
     name: "genre_vehicule",
     type: "text",
@@ -218,6 +224,52 @@ function updateGarantie(cache, checked) {
   }
 }
 
+const validateData = (data) => {
+  if (!data.type_attestation) {
+    alert("Veuillez sélectionner le type d'attestation.");
+    return false;
+  }
+  if (!data.nom_client) {
+    alert("Veuillez entrer le nom du client.");
+    return false;
+  }
+  if (!data.type) {
+    alert("Veuillez sélectionner le type de véhicule.");
+    return false;
+  }
+  if (!data.bureau) {
+    alert("Veuillez sélectionner le bureau.");
+    return false;
+  }
+  if (!data.categorie) {
+    alert("Veuillez sélectionner la catégorie.");
+    return false;
+  }
+  if (!data.genre_vehicule) {
+    alert("Veuillez rentrer le genre de véhicule.");
+    return false;
+  }
+
+  if (data.type_attestation === "2" && !data.numero_police) {
+    alert("Veuillez entrer le numéro de police.");
+    return false;
+  }
+  if (!data.date_debut) {
+    alert("Veuillez entrer la date de début.");
+    return false;
+  }
+  if (!data.date_fin) {
+    alert("Veuillez entrer la date de fin.");
+    return false;
+  }
+  if (!data.plaque) {
+    alert("Veuillez entrer la plaque du véhicule.");
+    return false;
+  }
+
+  return true;
+};
+
 // Soumission du formulaire
 async function sendData() {
   try {
@@ -225,9 +277,11 @@ async function sendData() {
       ...attestationData,
       garanties: [...selectedGarantie.value],
     };
-    attestationStore.addAttestion(data);
-    resetForm();
-    router.push("/show");
+    if (validateData(data)) {
+      attestationStore.addAttestion(data);
+      resetForm();
+      router.push("/show");
+    }
   } catch (error) {
     console.error("Error sending data:", error);
   }

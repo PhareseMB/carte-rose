@@ -5,7 +5,7 @@
         <div class="p-6 border-b border-gray-100">
           <div class="flex justify-between items-center">
             <h2 class="text-2xl font-semibold text-gray-800">
-              Liste de production #{{ attestionStore.attestation.length }}
+              Liste de production  #{{ attestionStore.attestation.length }}
             </h2>
             <router-link
               :to="{ name: 'Home' }"

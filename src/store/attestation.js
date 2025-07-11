@@ -19,6 +19,7 @@ export const useAttestationStore = defineStore("attestationStore", {
     db: db,
     show: false,
     show2: false,
+    message: "",
   }),
 
   getters: {
