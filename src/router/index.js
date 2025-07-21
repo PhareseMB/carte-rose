@@ -1,5 +1,6 @@
 import { createMemoryHistory, createRouter } from "vue-router";
 import Home from "../views/Home.vue";
+import Edit from "../views/Edit.vue";
 import AttestationTable from "../views/AttestationTable.vue";
 
 const routes = [
@@ -12,6 +13,11 @@ const routes = [
     path: "/show",
     component: AttestationTable,
     name: "show"
+  },
+  {
+    path: "/edit/:id",
+    component: Edit,
+    name: "edit"
   }
 ];
 

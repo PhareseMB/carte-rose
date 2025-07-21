@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+import { onMounted } from "vue";
+import { useAttestationStore } from "../src/store/attestation";
+
+const attestionStore = useAttestationStore();
+
+onMounted(async () => {
+  // await attestionStore.exportExcelData();
+});
+</script>
 
 <template>
   <router-view />

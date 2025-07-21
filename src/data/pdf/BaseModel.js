@@ -57,7 +57,7 @@ export const carterosePdf = async (e) => {
       { text: e.date_debut, absolutePosition: { x: 648, y: 239 } },
       { text: e.date_fin, absolutePosition: { x: 715, y: 239 } },
       { text: e.marque, absolutePosition: { x: 612, y: 263 } },
-      { text: "", absolutePosition: { x: 631, y: 290 } },
+      { text: e.numChasis ?? "", absolutePosition: { x: 631, y: 290 } },
       { text: e.bureau.label, absolutePosition: { x: 621, y: 316 } },
     ],
     styles: {

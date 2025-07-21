@@ -15,7 +15,7 @@
                 type="radio"
                 name="type_attestation"
                 value="1"
-                v-model="attestationData.type_attestation"
+                v-model="attestationStore.attestionElement.type_attestation"
                 class="form-radio text-blue-600 h-4 w-4 border-gray-300 focus:ring-blue-500"
               />
               <span class="ml-2 text-gray-700 text-sm">AFN</span>
@@ -25,7 +25,7 @@
                 type="radio"
                 name="type_attestation"
                 value="2"
-                v-model="attestationData.type_attestation"
+                v-model="attestationStore.attestionElement.type_attestation"
                 class="form-radio text-blue-600 h-4 w-4 border-gray-300 focus:ring-blue-500"
               />
               <span class="ml-2 text-gray-700 text-sm">REN</span>
@@ -34,7 +34,7 @@
           <select
             name="bureau"
             id="bureau"
-            v-model="attestationData.categorie"
+            v-model="attestationStore.attestionElement.categorie"
             class="col-span-3 sm:col-span-1 border border-gray-300 rounded-lg px-2 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           >
             <option value="" disabled>Choisir une categorie</option>
@@ -45,7 +45,7 @@
           <select
             name="bureau"
             id="bureau"
-            v-model="attestationData.bureau"
+            v-model="attestationStore.attestionElement.bureau"
             class="col-span-3 sm:col-span-1 border border-gray-300 rounded-lg px-2 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           >
             <option value="" disabled>Choisir un bureau</option>
@@ -60,7 +60,7 @@
             :type="field.type"
             :placeholder="field.placeholder"
             :name="field.name"
-            v-model:value="attestationData[field.name]"
+            v-model:value="attestationStore.attestionElement[field.name]"
           />
         </div>
         <div class="mt-6">
@@ -103,10 +103,12 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import InputField from "../components/InputField.vue";
 import { useAttestationStore } from "../store/attestation";
+import { useRoute } from "vue-router";
+const route = useRoute();
 
 const fields = [
   {
@@ -167,7 +169,6 @@ const fields = [
   },
 ];
 
-// Garanties disponibles
 const caches = [
   { id: 1, label: "R.C", disabled: true, value: true },
   { id: 2, label: "D.R", disabled: true, value: true },
@@ -216,11 +217,11 @@ const categories = [
   },
 ];
 
-const attestationData = reactive({
-  type_attestation: "",
-  categorie: "",
-  bureau: "",
-});
+// let attestationData = reactive({
+//   type_attestation: "",
+//   categorie: "",
+//   bureau: "",
+// });
 
 const selectedGarantie = ref([
   { id: 1, label: "R.C" },
@@ -230,17 +231,9 @@ const selectedGarantie = ref([
 const router = useRouter();
 const attestationStore = useAttestationStore();
 
-function updateGarantie(cache, checked) {
-  if (checked) {
-    if (!selectedGarantie.value.find((g) => g.id === cache.id)) {
-      selectedGarantie.value.push({ id: cache.id, label: cache.label });
-    }
-  } else {
-    selectedGarantie.value = selectedGarantie.value.filter(
-      (g) => g.id !== cache.id
-    );
-  }
-}
+onMounted(async () => {
+  attestationStore.getElementByID(route.params.id);
+});
 
 const validateData = (data) => {
   if (!data.type_attestation) {
@@ -295,16 +288,15 @@ const validateData = (data) => {
 
 async function sendData() {
   try {
-    const data = {
-      ...attestationData,
-      garanties: [...selectedGarantie.value],
-    };
-    if (validateData(data)) {
-      // attestationStore.addAttestion(data);
-      attestationStore.attestation.push(data);
-      resetForm();
-      router.push("/show");
-    }
+    // const data = {
+    //   ...attestationData,
+    //   garanties: [...selectedGarantie.value],
+    // };
+    // if (validateData(data)) {
+    //   attestationStore.addAttestion(data);
+    //   resetForm();
+    //   router.push("/show");
+    // }
   } catch (error) {
     console.error("Error sending data:", error);
   }
