@@ -119,12 +119,12 @@
                       </svg>
                       Imprimer attestation
                     </button>
-                    <router-link
+                    <!-- <router-link
                       :to="{ name: 'edit', params: { id: data.type } }"
                       class="inline-flex items-center px-3 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-all duration-200"
                     >
                       Modifier
-                    </router-link>
+                    </router-link> -->
                   </div>
                 </td>
               </tr>

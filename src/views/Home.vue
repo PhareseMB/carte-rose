@@ -167,7 +167,6 @@ const fields = [
   },
 ];
 
-// Garanties disponibles
 const caches = [
   { id: 1, label: "R.C", disabled: true, value: true },
   { id: 2, label: "D.R", disabled: true, value: true },
@@ -300,7 +299,7 @@ async function sendData() {
       garanties: [...selectedGarantie.value],
     };
     if (validateData(data)) {
-      // attestationStore.addAttestion(data);
+      attestationStore.addAttestion(data);
       attestationStore.attestation.push(data);
       resetForm();
       router.push("/show");

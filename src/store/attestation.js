@@ -82,7 +82,7 @@ export const useAttestationStore = defineStore("attestationStore", {
 
         this.attestation.push(newData);
 
-        const docRef = await addDoc(collection(this.db, "attestations"), {
+        const docRef = await addDoc(collection(this.db, "attestations_2"), {
           ...newData,
           createdAt: Date.now(),
         });
@@ -129,7 +129,7 @@ export const useAttestationStore = defineStore("attestationStore", {
         Genre: item.genre_vehicule ?? "",
         "Date de début": item.date_debut ?? "",
         "Date de fin": item.date_fin ?? "",
-        "Type Attestation": item.type_attestation ? "REN" : "AFN",
+        "Type Attestation": item.type_attestation === "1" ? "REN" : "AFN",
         "Date d'inscription": item.createdAt / (1000 * 60 * 60 * 24) + 25569,
         Garanties: Array.isArray(item.garanties)
           ? item.garanties.map((g) => g.label).join(", ")
